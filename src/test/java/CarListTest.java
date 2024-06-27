@@ -8,7 +8,7 @@ class CarListTest {
 
     @BeforeEach
     void setUp() {
-        carList = new CarArrayList();
+        carList = new CarLinkedList();
         for (int i = 0; i < 100; i++) {
             carList.add(new Car("brand" + i, i));
         }
