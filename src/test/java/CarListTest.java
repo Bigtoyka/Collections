@@ -27,7 +27,7 @@ class CarListTest {
 
     @Test
     public void whenElRemovedThenSizeMustBeDecreased() {
-        Car car = new Car("Takayama", 15);
+        Car car = new Car("Takayama", 0);
         carList.add(car);
         assertEquals(101, carList.size());
         assertTrue(carList.remove(car));
