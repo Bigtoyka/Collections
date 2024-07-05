@@ -8,6 +8,7 @@ public class CarArrayList implements CarList {
     public Car get(int index) {
         checkIndex(index);
         return array[index];
+
     }
 
     @Override
