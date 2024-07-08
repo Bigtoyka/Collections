@@ -82,4 +82,13 @@ class CarListTest {
         Car carFromList = carList.get(100);
         assertEquals("BMW",carFromList.getBrand());
     }
+
+    @Test
+    public void containsInCollections(){
+        assertEquals(100, carList.size());
+        Car car = new Car("Audi", 0);
+        carList.add(car);
+        assertTrue(carList.contains(car));
+        assertFalse(carList.contains(new Car("Brand200", 20)));
+    }
 }

@@ -6,7 +6,7 @@ public class CarHashSet implements CarSet {
 
     @Override
     public boolean add(Car car) {
-        if (size >= (array.length*LOAD_FACTOR)) {
+        if (size >= (array.length * LOAD_FACTOR)) {
             increaseArray();
         }
         boolean added = add(car, array);
@@ -53,7 +53,7 @@ public class CarHashSet implements CarSet {
         while (last != null) {
             if (last.value.equals(car)) {
                 secondLast.next = last.next; // на обьект, который был в last никто не ссылается и он исчезнет
-                size++;
+                size--;
                 return true;
             } else {
                 secondLast = last;
@@ -72,6 +72,28 @@ public class CarHashSet implements CarSet {
     public void clear() {
         array = new Entry[INITIAL_CAPACITY];
         size = 0;
+    }
+
+    @Override
+    public boolean contains(Car car) {
+        int position = getElementPosition(car, array.length);
+        if (array[position] == null) {
+            return false;
+        }
+        Entry seclondlast = array[position];
+        Entry last = seclondlast.next;
+        if (seclondlast.value.equals(car)) {
+            return true;
+        }
+        while (last != null) {
+            if (last.value.equals(car)) {
+                return true;
+            } else {
+                seclondlast = last;
+                last = last.next;
+            }
+        }
+        return false;
     }
 
     private int getElementPosition(Car car, int arrayLenght) {
