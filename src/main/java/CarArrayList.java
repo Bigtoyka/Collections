@@ -49,7 +49,7 @@ public class CarArrayList implements CarList {
     @Override
     public boolean add(Car car, int index) {
         increaseArray();
-        if(index<0 || index> size){
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
         System.arraycopy(array, index, array, index + 1, size - index);
@@ -86,7 +86,8 @@ public class CarArrayList implements CarList {
             throw new IndexOutOfBoundsException();
         }
     }
-    private void increaseArray(){
+
+    private void increaseArray() {
         if (size >= array.length) {
             array = Arrays.copyOf(array, array.length * 2);
         }
