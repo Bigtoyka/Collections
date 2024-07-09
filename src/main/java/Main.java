@@ -1,15 +1,20 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        CarCollection cars = new CarArrayList();
-        for(int i = 0; i< 10; i++){
-            cars.add(new Car("Brand"+i,i));
+
+        Set<Integer> numbers = new TreeSet<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                int res = o1.compareTo(o2);
+                return -res;
+            }
+        });
+        for (int i = 0; i < 100; i++) {
+            numbers.add((int) (Math.random() * 10));
         }
-        for(Car car : cars){
-            System.out.println(car.getBrand() + " " + car.getNumber());
+        for (int number : numbers) {
+            System.out.println(number);
         }
     }
 
