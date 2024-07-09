@@ -2,7 +2,7 @@ import java.util.Iterator;
 
 public class CarHashSet implements CarSet {
     private static final int INITIAL_CAPACITY = 16;
-    private static final double LOAD_FACTOR = 0.75f;
+    private static final double LOAD_FACTOR = 0.75;
     private int size = 0;
     private Entry[] array = new Entry[INITIAL_CAPACITY];
 
