@@ -1,9 +1,27 @@
 import java.util.Iterator;
 
-public class CarLinkedList implements CarList {
+public class CarLinkedList implements CarList, CarQueue {
     Node first;
     Node last;
     int size = 0;
+
+    @Override
+    public Car peek() {
+//        return  size > 0 ? get(0) : null; тоже самое, что ниже
+        if (size > 0) {
+            return get(0);
+        } else {
+            return null;
+        }
+
+    }
+
+    @Override
+    public Car poll() { // тут нет if else, т.к кинуть исключение для данного метода нормально
+        Car car = get(0);
+        removeAt(0);
+        return car;
+    }
 
     @Override
     public Car get(int index) {
@@ -94,7 +112,7 @@ public class CarLinkedList implements CarList {
     public boolean contains(Car car) {
         Node node = first;
         for (int i = 0; i < size; i++) {
-            if(node.value.equals(car)){
+            if (node.value.equals(car)) {
                 return true;
             }
             node = node.next;
