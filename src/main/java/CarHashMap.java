@@ -69,15 +69,15 @@ public class CarHashMap implements CarMap {
 
     @Override
     public List<Car> val() {
-        List<Car> newKeySet = new ArrayList<>();
+        List<Car> newArray = new ArrayList<>();
         for (Entry entry : array) {
             Entry exist = entry;
             while (exist != null) {
-                newKeySet.add(exist.value);
+                newArray.add(exist.value);
                 exist = exist.next;
             }
         }
-        return newKeySet;
+        return newArray;
     }
 
     @Override
@@ -90,10 +90,10 @@ public class CarHashMap implements CarMap {
             return true;
         } else {
             while (exist != null) {
-                if (exist.next == null) {
+                Entry nextEl = exist.next;
+                if (nextEl == null) {
                     return false;
                 }
-                Entry nextEl = exist.next;
                 if (nextEl.key.equals(key)) {
                     exist.next = nextEl.next;
                     size--;
