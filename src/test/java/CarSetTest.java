@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CarSetTest {
-    private CarSet carSet;
+    private CarSet<Car> carSet;
 
     @BeforeEach
     void setUp() {
-        carSet = new CarHashSet();
+        carSet = new CarHashSet<>();
         for (int i = 0; i < 10; i++) {
             carSet.add(new Car("brand" + i, i));
         }

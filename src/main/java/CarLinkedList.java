@@ -1,12 +1,12 @@
 import java.util.Iterator;
 
-public class CarLinkedList implements CarList, CarQueue {
+public class CarLinkedList<T> implements CarList<T>, CarQueue<T> {
     Node first;
     Node last;
     int size = 0;
 
     @Override
-    public Car peek() {
+    public T peek() {
 //        return  size > 0 ? get(0) : null; тоже самое, что ниже
         if (size > 0) {
             return get(0);
@@ -17,19 +17,19 @@ public class CarLinkedList implements CarList, CarQueue {
     }
 
     @Override
-    public Car poll() { // тут нет if else, т.к кинуть исключение для данного метода нормально
-        Car car = get(0);
+    public T poll() { // тут нет if else, т.к кинуть исключение для данного метода нормально
+        T car = get(0);
         removeAt(0);
         return car;
     }
 
     @Override
-    public Car get(int index) {
+    public T get(int index) {
         return getNode(index).value;
     }
 
     @Override
-    public boolean add(Car car) {
+    public boolean add(T car) {
         if (size == 0) {
             Node newnode = new Node(null, car, null);
             first = newnode;
@@ -44,7 +44,7 @@ public class CarLinkedList implements CarList, CarQueue {
     }
 
     @Override
-    public boolean remove(Car car) {
+    public boolean remove(T car) {
         Node node = first;
         for (int i = 0; i < size; i++) {
             if (node.value.equals(car)) {
@@ -87,7 +87,7 @@ public class CarLinkedList implements CarList, CarQueue {
     }
 
     @Override
-    public boolean add(Car car, int index) {
+    public boolean add(T car, int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
@@ -109,7 +109,7 @@ public class CarLinkedList implements CarList, CarQueue {
     }
 
     @Override
-    public boolean contains(Car car) {
+    public boolean contains(T car) {
         Node node = first;
         for (int i = 0; i < size; i++) {
             if (node.value.equals(car)) {
@@ -121,8 +121,8 @@ public class CarLinkedList implements CarList, CarQueue {
     }
 
     @Override
-    public Iterator<Car> iterator() {
-        return new Iterator<Car>() {
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
 
             private Node node = first;
 
@@ -132,20 +132,20 @@ public class CarLinkedList implements CarList, CarQueue {
             }
 
             @Override
-            public Car next() {
-                Car car = node.value;
+            public T next() {
+                T car = node.value;
                 node = node.next;
                 return car;
             }
         };
     }
 
-    static class Node {
-        Node previous;
-        Car value;
-        Node next;
+    private class Node {
+        private Node previous;
+        private T value;
+        private Node next;
 
-        public Node(Node previous, Car value, Node next) {
+        public Node(Node previous, T value, Node next) {
             this.previous = previous;
             this.value = value;
             this.next = next;
